@@ -1,4 +1,4 @@
-# [devminds](https://devminds.ch) Python Project Template
+# Python Project Template by [devminds GmbH](https://devminds.ch)
 
 ## Directory structure
 
@@ -10,10 +10,7 @@
 
 ## TODO
 
-* Add dummy package project
-* Add devcontainer
-* Add pytests
-* Add docs using Sphinx
+* Add docs (usage.md) using Sphinx
 * Add pipelines
   * GitHub: docs/build/test
   * GitLab: docs/build/test/coverage/deploy

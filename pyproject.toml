@@ -1,0 +1,66 @@
+[build-system]
+requires = [
+    "setuptools",
+    "setuptools_scm[toml]",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "demo"
+authors = [
+    {name = "Andreas", email = "andreas@devminds.ch"},
+    {name = "Thomas", email = "thomas@devminds.ch"},
+]
+description = "Python Project Template by devminds GmbH"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "click",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/devminds-ch/project-python"
+"Bug Tracker" = "https://github.com/devminds-ch/project-python/issues"
+
+[project.optional-dependencies]
+dev = [
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock"
+]
+doc = [
+    "myst-parser",
+    "sphinx",
+    "sphinx-rtd-theme"
+]
+
+[project.scripts]
+demo = "demo.__main__:cli"
+
+[tool.setuptools_scm]
+write_to = "src/demo/version.py"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov --cov-report term --cov-report xml --junitxml=report.xml"
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.run]
+branch = true
+omit = [
+    "*/__init__.py",
+    "*/__main__.py",
+    "*/version.py",
+    "tests/*"
+]
+source_pkgs = ["demo"]
