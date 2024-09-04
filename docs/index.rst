@@ -6,4 +6,4 @@ Python Project Template Documentation
    :caption: Contents:
 
    usage.md
-   demo.rst
+   python_training_project.rst

@@ -2,8 +2,8 @@ import click
 import logging
 import sys
 
-from demo.calculate import sum
-from demo.version import version
+from python_training_project.calculate import sum
+from python_training_project.version import version
 
 log = logging.getLogger(__name__)
 

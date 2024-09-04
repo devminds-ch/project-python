@@ -13,8 +13,8 @@ project = 'Python Project Template by devminds GmbH'
 copyright = '2024, Andreas, Thomas'
 author = 'Andreas, Thomas'
 
-# Note: this requires the demo package to be installed
-from demo.version import version  # noqa
+# Note: this requires the python_training_project package to be installed
+from python_training_project.version import version  # noqa
 # The full version, including alpha/beta/rc tags
 release = version
 

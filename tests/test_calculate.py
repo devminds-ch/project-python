@@ -1,4 +1,4 @@
-from demo.calculate import sum
+from python_training_project.calculate import sum
 
 
 def test_sum():

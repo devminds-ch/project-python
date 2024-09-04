@@ -7,7 +7,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "python-training-project"
+name = "python_training_project"
 authors = [
     {name = "Andreas", email = "andreas@devminds.ch"},
     {name = "Thomas", email = "thomas@devminds.ch"},
@@ -43,10 +43,10 @@ doc = [
 ]
 
 [project.scripts]
-demo = "demo.__main__:cli"
+python_training_project = "python_training_project.__main__:cli"
 
 [tool.setuptools_scm]
-write_to = "src/demo/version.py"
+write_to = "src/python_training_project/version.py"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -63,4 +63,4 @@ omit = [
     "*/version.py",
     "tests/*"
 ]
-source_pkgs = ["demo"]
+source_pkgs = ["python_training_project"]
