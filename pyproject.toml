@@ -7,12 +7,12 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "demo"
+name = "python-training-project"
 authors = [
     {name = "Andreas", email = "andreas@devminds.ch"},
     {name = "Thomas", email = "thomas@devminds.ch"},
 ]
-description = "Python Project Template by devminds GmbH"
+description = "Python Training Project by devminds GmbH"
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
