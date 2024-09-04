@@ -1,4 +1,4 @@
-Python Project Template Documentation
+Python Training Project Documentation
 =====================================
 
 .. toctree::

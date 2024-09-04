@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath('../src'))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Python Project Template by devminds GmbH'
+project = 'Python Training Project by devminds GmbH'
 copyright = '2024, Andreas, Thomas'
 author = 'Andreas, Thomas'
 
