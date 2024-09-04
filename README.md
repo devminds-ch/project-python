@@ -1,4 +1,4 @@
-# Python Project Template by [devminds GmbH](https://devminds.ch)
+# Python Training Project by [devminds GmbH](https://devminds.ch)
 
 ## Directory structure
 
