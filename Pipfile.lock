@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f84dcd2e7edf15800ffab08a3af7047bceb260a413d38a40ff3471d4fdf75083"
+            "sha256": "7341157ac6cb50c1e504bcdb00aaecd038937694cba82a56481a992e57eec010"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -42,6 +42,15 @@
             ],
             "markers": "python_version >= '3.8'",
             "version": "==2.16.0"
+        },
+        "build": {
+            "hashes": [
+                "sha256:526263f4870c26f26c433545579475377b2b7588b6f1eac76a001e873ae3e19d",
+                "sha256:75e10f767a433d9a86e50d83f418e83efc18ede923ee5ff7df93b6cb0306c5d4"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==1.2.1"
         },
         "certifi": {
             "hashes": [
@@ -399,6 +408,14 @@
             ],
             "markers": "python_version >= '3.8'",
             "version": "==2.18.0"
+        },
+        "pyproject-hooks": {
+            "hashes": [
+                "sha256:4b37730834edbd6bd37f26ece6b44802fb1c1ee2ece0e54ddff8bfc06db86965",
+                "sha256:7ceeefe9aec63a1064c18d939bdc3adf2d8aa1988a510afec15151578b232aa2"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==1.1.0"
         },
         "pytest": {
             "hashes": [
