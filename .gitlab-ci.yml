@@ -22,6 +22,9 @@ build-python-package:
       - dist
     expire_in: 1 week
 
+code_quality:
+  when: manual
+
 test-python-package:
   stage: test
   before_script:
