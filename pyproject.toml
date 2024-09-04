@@ -29,19 +29,6 @@ dynamic = ["version"]
 "Homepage" = "https://github.com/devminds-ch/project-python"
 "Bug Tracker" = "https://github.com/devminds-ch/project-python/issues"
 
-[project.optional-dependencies]
-dev = [
-    "coverage",
-    "pytest",
-    "pytest-cov",
-    "pytest-mock"
-]
-doc = [
-    "myst-parser",
-    "sphinx",
-    "sphinx-rtd-theme"
-]
-
 [project.scripts]
 python_training_project = "python_training_project.__main__:cli"
 
