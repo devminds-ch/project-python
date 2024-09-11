@@ -6,7 +6,16 @@ pipeline {
         dockerfile {
             filename '.devcontainer/Dockerfile'
             dir '.'
+            args  '--net="jenkins_default"' // required for accessing the PyPI server
         }
+    }
+    options {
+        disableConcurrentBuilds()
+        //skipDefaultCheckout() // default checkout is required for .devcontainer/Dockerfile
+        //newContainerPerStage()
+    }
+    parameters {
+        booleanParam(name: 'DEPLOY_PACKAGE', defaultValue: false, description: 'Flag indicating if Python package should be deployed')
     }
     stages {
         stage('Cleanup') {
@@ -83,6 +92,27 @@ pipeline {
                         [parser: 'COBERTURA', pattern: 'coverage.xml']
                     ]
                 )
+            }
+        }
+        stage('Deploy Python package') {
+            when {
+                expression {
+                    params.DEPLOY_PACKAGE == true
+                }
+            }
+            // https://twine.readthedocs.io/en/stable/
+            //environment {
+            //    TWINE_REPOSITORY = 'pypiserver'
+            //}
+            //steps {
+            //    sh 'twine upload --config-file .pypirc dist/*'
+            //}
+            environment {
+                TWINE_REPOSITORY_URL = 'http://pypiserver.lan:8082'
+                TWINE_CREDENTIALS = credentials('pypiserver')
+            }
+            steps {
+                sh 'twine upload --user $TWINE_CREDENTIALS_USR --password $TWINE_CREDENTIALS_PSW dist/*'
             }
         }
     }

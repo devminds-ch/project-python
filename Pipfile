@@ -18,6 +18,7 @@ pytest-cov = "*"
 pytest-mock = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
+twine = "*"
 
 [requires]
 python_version = "3"

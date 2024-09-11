@@ -1,4 +1,7 @@
 node {
+    properties([
+        disableConcurrentBuilds()
+    ])
     stage('Checkout SCM') {
         checkout scm
     }
@@ -7,7 +10,7 @@ node {
         customImage = docker.build("jenkins-python:latest",
                                     "-f .devcontainer/Dockerfile ./")
     }
-    customImage.inside {
+    customImage.inside('--net="jenkins_default"') {
         stage('Cleanup') {
             sh 'rm -rf dist build docs/_build'
         }
@@ -73,6 +76,27 @@ node {
                     [parser: 'COBERTURA', pattern: 'coverage.xml']
                 ]
             )
+        }
+        stage('Deploy Python package') {
+            // https://twine.readthedocs.io/en/stable/
+            //withEnv([
+            //    'TWINE_REPOSITORY="pypiserver"'
+            //]) {
+            //    sh 'twine upload --config-file .pypirc dist/*'
+            //}
+            withEnv([
+                'TWINE_REPOSITORY_URL=http://pypiserver.lan:8082'
+            ]) {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'pypiserver',
+                        usernameVariable: 'TWINE_USERNAME',
+                        passwordVariable: 'TWINE_PASSWORD'
+                    )
+                ]) {
+                    sh 'twine upload dist/*'
+                }
+            }
         }
     }
 }
