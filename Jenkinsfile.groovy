@@ -6,16 +6,14 @@ node {
         checkout scm
     }
     stage('Agent Setup') {
-        // https://www.jenkins.io/doc/book/pipeline/docker/
-        docker.withRegistry('http://registry.lan:5000') {
+        docker.withRegistry('http://gitea.lan:3000', 'gitea') {
             customImage = docker.build(
-                "jenkins-python:latest",
+                "root/jenkins-python:latest",
                 "-f .devcontainer/Dockerfile ./")
-            // Push custom image to the own registry
-            customImage.push()
+            customImage.push() // push custom image to the own registry
         }
     }
-    customImage.inside('--net="jenkins_default"') {
+    customImage.inside('--net="jenkins_default"') { // required for accessing the Gitea server
         stage('Cleanup') {
             sh 'rm -rf dist build docs/_build'
         }
@@ -83,18 +81,17 @@ node {
             )
         }
         stage('Deploy Python package') {
-            // https://twine.readthedocs.io/en/stable/
             //withEnv([
-            //    'TWINE_REPOSITORY="pypiserver"'
+            //    'TWINE_REPOSITORY="gitea"'
             //]) {
             //    sh 'twine upload --config-file .pypirc dist/*'
             //}
             withEnv([
-                'TWINE_REPOSITORY_URL=http://pypiserver.lan:8082'
+                'TWINE_REPOSITORY_URL=http://gitea.lan:3000/api/packages/root/pypi'
             ]) {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'pypiserver',
+                        credentialsId: 'gitea',
                         usernameVariable: 'TWINE_USERNAME',
                         passwordVariable: 'TWINE_PASSWORD'
                     )

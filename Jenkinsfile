@@ -6,7 +6,7 @@ pipeline {
         dockerfile {
             filename '.devcontainer/Dockerfile'
             dir '.'
-            args  '--net="jenkins_default"' // required for accessing the PyPI server
+            args  '--net="jenkins_default"' // required for accessing the Gitea server
         }
     }
     options {
@@ -15,7 +15,11 @@ pipeline {
         //newContainerPerStage()
     }
     parameters {
-        booleanParam(name: 'DEPLOY_PACKAGE', defaultValue: false, description: 'Flag indicating if Python package should be deployed')
+        booleanParam(
+            name: 'DEPLOY_PACKAGE',
+            defaultValue: false,
+            description: 'Flag indicating if Python package should be deployed'
+        )
     }
     stages {
         stage('Cleanup') {
@@ -100,16 +104,15 @@ pipeline {
                     params.DEPLOY_PACKAGE == true
                 }
             }
-            // https://twine.readthedocs.io/en/stable/
             //environment {
-            //    TWINE_REPOSITORY = 'pypiserver'
+            //    TWINE_REPOSITORY = 'gitea'
             //}
             //steps {
             //    sh 'twine upload --config-file .pypirc dist/*'
             //}
             environment {
-                TWINE_REPOSITORY_URL = 'http://pypiserver.lan:8082'
-                TWINE_CREDENTIALS = credentials('pypiserver')
+                TWINE_REPOSITORY_URL = 'http://gitea.lan:3000/api/packages/root/pypi'
+                TWINE_CREDENTIALS = credentials('gitea')
             }
             steps {
                 sh 'twine upload --user $TWINE_CREDENTIALS_USR --password $TWINE_CREDENTIALS_PSW dist/*'
