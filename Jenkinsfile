@@ -47,6 +47,15 @@ pipeline {
                 ])
             }
         }
+        stage('Build Python package') {
+            steps {
+                sh 'python -m build --wheel'
+                archiveArtifacts(
+                    artifacts: 'dist/**/*.whl',
+                    onlyIfSuccessful: true
+                )
+            }
+        }
         stage('Static code analysis') {
             steps {
                 warnError('flake8 issues found') {
@@ -71,15 +80,6 @@ pipeline {
                         pyLint(pattern: 'pylint.log'),
                         myPy(pattern: 'mypy.log')
                     ]
-                )
-            }
-        }
-        stage('Build Python package') {
-            steps {
-                sh 'python -m build --wheel'
-                archiveArtifacts(
-                    artifacts: 'dist/**/*.whl',
-                    onlyIfSuccessful: true
                 )
             }
         }

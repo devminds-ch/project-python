@@ -35,6 +35,13 @@ node {
                 useWrapperFileDirectly: true
             ])
         }
+        stage('Build Python package') {
+            sh 'python -m build --wheel'
+            archiveArtifacts(
+                artifacts: 'dist/**/*.whl',
+                onlyIfSuccessful: true
+            )
+        }
         stage('Static code analysis') {
             warnError('flake8 issues found') {
                 sh 'flake8 src/python_training_project --format=pylint > flake8.log'
@@ -58,13 +65,6 @@ node {
                     pyLint(pattern: 'pylint.log'),
                     myPy(pattern: 'mypy.log')
                 ]
-            )
-        }
-        stage('Build Python package') {
-            sh 'python -m build --wheel'
-            archiveArtifacts(
-                artifacts: 'dist/**/*.whl',
-                onlyIfSuccessful: true
             )
         }
         stage('Test Python package') {
