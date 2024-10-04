@@ -32,6 +32,8 @@ The Python package is based on the following toolchain:
 ## Directory structure
 
 ```
+├── build   Reserved folder for build artifacts
+├── dist    Reserved folder for build artifacts
 ├── docs    Sphinx documentation
 ├── src     Python package source code
 └── tests   Python tests
@@ -67,9 +69,9 @@ python -m build --wheel
 Execute static code analysis:
 
 ```bash
-flake8 src/python_training_project
-pylint src/python_training_project
-mypy src/python_training_project
+flake8 src/python_training_project --format=pylint > flake8.log
+pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > pylint.log
+mypy src/python_training_project > mypy.log
 ```
 
 Execute Python tests:

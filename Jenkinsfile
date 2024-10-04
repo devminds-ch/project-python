@@ -62,7 +62,7 @@ pipeline {
                     sh 'flake8 src/python_training_project --format=pylint > flake8.log'
                 }
                 warnError('pylint issues found') {
-                    sh 'pylint --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" src/python_training_project > pylint.log'
+                    sh 'pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > pylint.log'
                 }
                 warnError('mypy issues found') {
                     sh 'mypy src/python_training_project > mypy.log'
