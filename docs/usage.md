@@ -1,3 +1,7 @@
-# How to use the project template
+# How to use the command line interface
 
-TBD
+Check the automatic help page for further information:
+
+```bash
+python_training_project --help
+```
