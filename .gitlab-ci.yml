@@ -14,6 +14,7 @@ build-python-package:
   stage: build
   before_script:
     - pipenv install --system --dev
+    - pip install packaging
   script:
     - echo "Building the project..."
     - python -m build --wheel
