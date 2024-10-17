@@ -23,6 +23,13 @@ build-python-package:
       - dist
     expire_in: 1 week
 
+build-documentation:
+  stage: build
+  before_script:
+    - pip install -e .
+  script:
+    - cd docs && pipenv run make html
+
 code_quality:
   when: manual
 
