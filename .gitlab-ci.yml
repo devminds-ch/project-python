@@ -26,9 +26,14 @@ build-python-package:
 build-documentation:
   stage: build
   before_script:
+    - pipenv install --system --dev
     - pip install -e .
+    - pip install packaging
+    - pip install tomli
+    - pip install certifi
   script:
-    - cd docs && pipenv run make html
+    - cd docs
+    - pipenv run make html
 
 code_quality:
   when: manual
