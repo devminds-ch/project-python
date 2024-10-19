@@ -1,10 +1,10 @@
 # https://github.com/devcontainers/images/tree/main/src/python
 FROM mcr.microsoft.com/devcontainers/python:1-3.12-bookworm
 
-# [Optional] Uncomment this section to install additional packages.
+# Install additional packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #    && apt-get -y install --no-install-recommends \
-#    <your-package-list-here> \
+#       <your-package-list-here> \
 #    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Install pipenv dependencies
