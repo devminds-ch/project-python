@@ -24,22 +24,21 @@ pipeline {
     stages {
         stage('Cleanup') {
             steps {
-                sh 'rm -rf dist build docs/_build'
+                sh 'rm -rf dist build'
             }
         }
         stage('Build documentation') {
             steps {
-                sh 'pip install -e .' // required for python_training_project.version
-                sh 'cd docs && pipenv run make html'
+                sh './tools/build-docs.sh'
                 archiveArtifacts(
-                    artifacts: 'docs/_build/html/**',
+                    artifacts: 'build/html/**',
                     onlyIfSuccessful: true
                 )
                 publishHTML([
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: false,
-                    reportDir: 'docs/_build/html/',
+                    reportDir: 'build/html/',
                     reportFiles: 'index.html',
                     reportName: 'Documentation',
                     reportTitles: '',
@@ -49,23 +48,17 @@ pipeline {
         }
         stage('Build Python package') {
             steps {
-                sh 'python -m build --wheel'
+                sh './tools/build-package.sh'
                 archiveArtifacts(
-                    artifacts: 'dist/**/*.whl',
+                    artifacts: 'dist/*.whl',
                     onlyIfSuccessful: true
                 )
             }
         }
         stage('Static code analysis') {
             steps {
-                warnError('flake8 issues found') {
-                    sh 'flake8 src/python_training_project --format=pylint > flake8.log'
-                }
-                warnError('pylint issues found') {
-                    sh 'pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > pylint.log'
-                }
-                warnError('mypy issues found') {
-                    sh 'mypy src/python_training_project > mypy.log'
+                warnError('lint issues found') {
+                    sh './tools/lint-package.sh'
                 }
                 recordIssues(
                     sourceCodeRetention: 'LAST_BUILD',
@@ -76,24 +69,23 @@ pipeline {
                             lowTags: 'HACK',
                             normalTags: 'TODO'
                         ),
-                        flake8(pattern: 'flake8.log'),
-                        pyLint(pattern: 'pylint.log'),
-                        myPy(pattern: 'mypy.log')
+                        flake8(pattern: 'build/flake8.txt'),
+                        pyLint(pattern: 'build/pylint.txt'),
+                        myPy(pattern: 'build/mypy.txt')
                     ]
                 )
             }
         }
         stage('Test Python package') {
             steps {
-                sh 'pip install -e .'
-                sh 'pytest'
+                sh './tools/test-package.sh'
                 junit(
-                    testResults: 'report.xml'
+                    testResults: 'build/test-report.xml'
                 )
                 recordCoverage(
                     tools: [
-                        [parser: 'JUNIT', pattern: 'report.xml'],
-                        [parser: 'COBERTURA', pattern: 'coverage.xml']
+                        [parser: 'JUNIT', pattern: 'build/test-report.xml'],
+                        [parser: 'COBERTURA', pattern: 'build/test-coverage.xml']
                     ]
                 )
             }
