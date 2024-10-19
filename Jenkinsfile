@@ -105,9 +105,11 @@ pipeline {
             environment {
                 TWINE_REPOSITORY_URL = 'http://gitea.lan:3000/api/packages/root/pypi'
                 TWINE_CREDENTIALS = credentials('gitea')
+                TWINE_USERNAME = TWINE_CREDENTIALS_USR
+                TWINE_PASSWORD = TWINE_CREDENTIALS_PSW
             }
             steps {
-                sh 'twine upload --user $TWINE_CREDENTIALS_USR --password $TWINE_CREDENTIALS_PSW dist/*'
+                sh './tools/deploy-package.sh'
             }
         }
     }

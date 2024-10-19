@@ -89,7 +89,7 @@ node {
                         passwordVariable: 'TWINE_PASSWORD'
                     )
                 ]) {
-                    sh 'twine upload dist/*'
+                    sh './tools/deploy-package.sh'
                 }
             }
         }
