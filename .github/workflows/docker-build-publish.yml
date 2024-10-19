@@ -5,12 +5,16 @@ on:
     branches:
       - main
     paths:
-      - ".devcontainer/Dockerfile"
+      - Pipfile
+      - Pipfile.lock
+      - .devcontainer/Dockerfile
   pull_request:
     branches:
       - main
     paths:
-      - ".devcontainer/Dockerfile"
+      - Pipfile
+      - Pipfile.lock
+      - .devcontainer/Dockerfile
 
 jobs:
   build-and-publish:
