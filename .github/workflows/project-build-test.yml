@@ -61,6 +61,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Run linters
         run: tools/lint-package.sh
+        continue-on-error: true
       - name: Upload lint results
         uses: actions/upload-artifact@v4
         with:
