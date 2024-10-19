@@ -36,7 +36,9 @@ The Python package is based on the following toolchain:
 ├── dist    Reserved folder for build artifacts
 ├── docs    Sphinx documentation
 ├── src     Python package source code
-└── tests   Python tests
+├── tests   Python tests
+└── tools   Scripts
+
 ```
 
 ## Build, test and deploy instructions
@@ -52,7 +54,9 @@ Note: the Python virtual environment can be removed using `pipenv --rm`.
 
 **IMPORTANT:** all of the following commands have to be executed within the Python virtual environment!
 
-Build the Sphinx documentation:
+### Build documentation
+
+Build the Sphinx documentation: `./tools/build-docs.sh`
 
 ```bash
 pip install -e .  # package installation is required for Git version
@@ -60,29 +64,43 @@ cd docs
 make html
 ```
 
-Build the Python package:
+### Build Python package
+
+Build the Python package: `./tools/build-package.sh`
 
 ```bash
 python -m build --wheel
 ```
 
-Execute static code analysis:
+### Run Python linters
+
+Run static code analysis: `./tools/lint-package.sh`
 
 ```bash
-flake8 src/python_training_project --format=pylint > flake8.log
-pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > pylint.log
-mypy src/python_training_project > mypy.log
+mkdir -p build
+flake8 src/python_training_project --format=pylint > build/flake8.txt
+pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > build/pylint.txt
+mypy src/python_training_project > build/mypy.txt
 ```
 
-Execute Python tests:
+### Run Python tests
+
+Run Python tests: `./tools/test-package.sh`
 
 ```bash
 pip install -e .  # package installation is required for path resolution
+mkdir -p build
 pytest
 ```
 
-Deploy the Python package:
+### Deploy Python package
+
+Deploy the Python package: `./tools/deploy-package.sh`
 
 ```bash
-twine upload --repository-url REPOSITORY_URL --username USERNAME --password PASSWORD dist/*
+# Make sure to set the following environment variables
+# TWINE_REPOSITORY_URL
+# TWINE_USERNAME
+# TWINE_PASSWORD
+twine upload dist/*
 ```
