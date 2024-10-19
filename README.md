@@ -20,13 +20,12 @@ Commands:
 
 The Python package is based on the following toolchain:
 
-* [Pipenv](https://pipenv.pypa.io/en/latest/) for dependencies and virtual environment
+* [uv](https://docs.astral.sh/uv/) for dependencies and virtual environment
 * [Sphinx](https://www.sphinx-doc.org/en/master/) for documentation
 * [Flake8](https://flake8.pycqa.org/en/latest/) for style guide enforcement
 * [mypy](https://mypy-lang.org/) for static type checking
 * [Pylint](https://www.pylint.org/) for static code analysis
 * [pytest](https://docs.pytest.org/en/stable/) for test creation and execution
-* [Twine](https://twine.readthedocs.io/en/stable/) for package deployment
 
 
 ## Directory structure
@@ -43,64 +42,52 @@ The Python package is based on the following toolchain:
 
 ## Build, test and deploy instructions
 
-Create and activate the Python virtual environment:
+All steps required to build, test or deploy the Python package are wrapped in separate shell scripts.
 
-```bash
-pipenv sync --dev # setup virtual environment including development dependencies
-pipenv shell      # activate virtual environment
-```
-
-Note: the Python virtual environment can be removed using `pipenv --rm`.
-
-**IMPORTANT:** all of the following commands have to be executed within the Python virtual environment!
+Check the content of the corresponding scripts for details.
 
 ### Build documentation
 
-Build the Sphinx documentation: `./tools/build-docs.sh`
+Build the Sphinx documentation:
 
 ```bash
-pip install -e .  # package installation is required for Git version
-cd docs
-make html
+./tools/build-docs.sh
 ```
 
 ### Build Python package
 
-Build the Python package: `./tools/build-package.sh`
+Build the Python package:
 
 ```bash
-python -m build --wheel
+./tools/build-package.sh
 ```
 
 ### Run Python linters
 
-Run static code analysis: `./tools/lint-package.sh`
+Run static code analysis:
 
 ```bash
-mkdir -p build
-flake8 src/python_training_project --format=pylint > build/flake8.txt
-pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > build/pylint.txt
-mypy src/python_training_project > build/mypy.txt
+./tools/lint-package.sh
 ```
 
 ### Run Python tests
 
-Run Python tests: `./tools/test-package.sh`
+Run Python tests:
 
 ```bash
-pip install -e .  # package installation is required for path resolution
-mkdir -p build
-pytest
+./tools/test-package.sh
 ```
 
 ### Deploy Python package
 
-Deploy the Python package: `./tools/deploy-package.sh`
+Make sure the set the following environment variables before calling the deployment script:
+
+* `UV_PUBLISH_URL`
+* `UV_PUBLISH_USERNAME`
+* `UV_PUBLISH_PASSWORD`
+
+Deploy the Python package:
 
 ```bash
-# Make sure to set the following environment variables
-# TWINE_REPOSITORY_URL
-# TWINE_USERNAME
-# TWINE_PASSWORD
-twine upload dist/*
+./tools/deploy-package.sh
 ```

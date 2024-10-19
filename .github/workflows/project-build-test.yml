@@ -42,9 +42,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build package
+      - name: Build Python package
         run: ./tools/build-package.sh
-      - name: Upload python package
+      - name: Upload Python package
         uses: actions/upload-artifact@v4
         with:
           name: python-package
@@ -77,7 +77,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Run pytest
+      - name: Run tests
         run: ./tools/test-package.sh
       - name: Upload test results
         uses: actions/upload-artifact@v4

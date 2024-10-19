@@ -11,19 +11,19 @@ STATUS=0
 set +e
 
 echo "Running flake8..."
-flake8 src/python_training_project --format=pylint > build/flake8.log
+uv run --all-extras flake8 src/python_training_project --format=pylint > build/flake8.txt
 if [ $? -ne 0 ]; then
     STATUS=1
 fi
 
 echo "Running pylint..."
-pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > build/pylint.log
+uv run --all-extras pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > build/pylint.txt
 if [ $? -ne 0 ]; then
     STATUS=1
 fi
 
 echo "Running mypy..."
-mypy src/python_training_project > build/mypy.log
+uv run --all-extras mypy src/python_training_project > build/mypy.txt
 if [ $? -ne 0 ]; then
     STATUS=1
 fi

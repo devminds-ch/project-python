@@ -25,6 +25,20 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[project.optional-dependencies]
+dev = [
+    "coverage",
+    "flake8",
+    "mypy",
+    "myst-parser",
+    "pylint",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "sphinx",
+    "sphinx-rtd-theme",
+]
+
 [project.urls]
 "Homepage" = "https://github.com/devminds-ch/project-python"
 "Bug Tracker" = "https://github.com/devminds-ch/project-python/issues"
