@@ -1,18 +1,18 @@
 """
 The main entry point contains the command line interface.
 """
-import click
 import logging
 import sys
 
+import click
+
 from python_training_project.calculate import sum
-from python_training_project.version import version
 
 log = logging.getLogger(__name__)
 
 
 @click.group()
-@click.version_option(version)
+@click.version_option()
 def cli():
     """Python Training Project by devminds GmbH."""
     logging.basicConfig(
@@ -26,7 +26,7 @@ def cli():
 @click.argument('b', type=float)
 def cli_sum(a: float, b: float):
     """Show the sum of two numbers on the console."""
-    log.info(f'Sum of {a} and {b} is {sum(a, b)}')
+    log.info('Sum of %f and %f is %f', a, b, sum(a, b))
 
 
 if __name__ == '__main__':
