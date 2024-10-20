@@ -103,10 +103,10 @@ pipeline {
             //    sh 'twine upload --config-file .pypirc dist/*'
             //}
             environment {
-                TWINE_REPOSITORY_URL = 'http://gitea.lan:3000/api/packages/root/pypi'
-                TWINE_CREDENTIALS = credentials('gitea')
-                TWINE_USERNAME = TWINE_CREDENTIALS_USR
-                TWINE_PASSWORD = TWINE_CREDENTIALS_PSW
+                UV_PUBLISH_URL = 'http://gitea.lan:3000/api/packages/root/pypi'
+                CREDENTIALS = credentials('gitea')
+                UV_PUBLISH_USERNAME = "$CREDENTIALS_USR"
+                UV_PUBLISH_PASSWORD = "$CREDENTIALS_PSW"
             }
             steps {
                 sh './tools/deploy-package.sh'

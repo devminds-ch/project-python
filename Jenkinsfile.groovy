@@ -61,8 +61,7 @@ node {
             )
         }
         stage('Test Python package') {
-            sh 'pip install -e .'
-            sh 'pytest'
+            sh './tools/test-package.sh'
             junit(
                 testResults: 'build/test-report.xml'
             )
@@ -80,13 +79,13 @@ node {
             //    sh 'twine upload --config-file .pypirc dist/*'
             //}
             withEnv([
-                'TWINE_REPOSITORY_URL=http://gitea.lan:3000/api/packages/root/pypi'
+                'UV_PUBLISH_URL=http://gitea.lan:3000/api/packages/root/pypi'
             ]) {
                 withCredentials([
                     usernamePassword(
                         credentialsId: 'gitea',
-                        usernameVariable: 'TWINE_USERNAME',
-                        passwordVariable: 'TWINE_PASSWORD'
+                        usernameVariable: 'UV_PUBLISH_USERNAME',
+                        passwordVariable: 'UV_PUBLISH_PASSWORD'
                     )
                 ]) {
                     sh './tools/deploy-package.sh'
