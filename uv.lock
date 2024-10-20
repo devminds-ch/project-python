@@ -565,13 +565,13 @@ wheels = [
 
 [[package]]
 name = "python-training-project"
-version = "0.1.dev45+g1713bea.d20241019"
+version = "0.1.dev47+gffae0aa.d20241020"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
 ]
 
-[package.optional-dependencies]
+[package.dev-dependencies]
 dev = [
     { name = "coverage" },
     { name = "flake8" },
@@ -586,18 +586,20 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "click" },
-    { name = "coverage", marker = "extra == 'dev'" },
-    { name = "flake8", marker = "extra == 'dev'" },
-    { name = "mypy", marker = "extra == 'dev'" },
-    { name = "myst-parser", marker = "extra == 'dev'" },
-    { name = "pylint", marker = "extra == 'dev'" },
-    { name = "pytest", marker = "extra == 'dev'" },
-    { name = "pytest-cov", marker = "extra == 'dev'" },
-    { name = "pytest-mock", marker = "extra == 'dev'" },
-    { name = "sphinx", marker = "extra == 'dev'" },
-    { name = "sphinx-rtd-theme", marker = "extra == 'dev'" },
+requires-dist = [{ name = "click" }]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "coverage" },
+    { name = "flake8" },
+    { name = "mypy" },
+    { name = "myst-parser" },
+    { name = "pylint" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "pytest-mock" },
+    { name = "sphinx" },
+    { name = "sphinx-rtd-theme" },
 ]
 
 [[package]]

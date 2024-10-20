@@ -25,8 +25,15 @@ dependencies = [
 ]
 dynamic = ["version"]
 
-[project.optional-dependencies]
-dev = [
+[project.urls]
+"Homepage" = "https://github.com/devminds-ch/project-python"
+"Bug Tracker" = "https://github.com/devminds-ch/project-python/issues"
+
+[project.scripts]
+python_training_project = "python_training_project.__main__:cli"
+
+[tool.uv]
+dev-dependencies = [
     "coverage",
     "flake8",
     "mypy",
@@ -38,13 +45,6 @@ dev = [
     "sphinx",
     "sphinx-rtd-theme",
 ]
-
-[project.urls]
-"Homepage" = "https://github.com/devminds-ch/project-python"
-"Bug Tracker" = "https://github.com/devminds-ch/project-python/issues"
-
-[project.scripts]
-python_training_project = "python_training_project.__main__:cli"
 
 [tool.setuptools_scm]
 write_to = "src/python_training_project/version.py"
