@@ -16,14 +16,26 @@ if [ $? -ne 0 ]; then
     STATUS=1
 fi
 
+echo "Running mypy..."
+uv run --all-extras mypy src/python_training_project > build/mypy.txt
+if [ $? -ne 0 ]; then
+    STATUS=1
+fi
+
 echo "Running pylint..."
 uv run --all-extras pylint src/python_training_project --msg-template="{path}:{line}: [{msg_id}, {obj}] {msg} ({symbol})" > build/pylint.txt
 if [ $? -ne 0 ]; then
     STATUS=1
 fi
 
-echo "Running mypy..."
-uv run --all-extras mypy src/python_training_project > build/mypy.txt
+echo "Running ruff check..."
+uv run --all-extras ruff check > build/ruff.txt
+if [ $? -ne 0 ]; then
+    STATUS=1
+fi
+
+echo "Running ruff format..."
+uv run --all-extras ruff format --check
 if [ $? -ne 0 ]; then
     STATUS=1
 fi

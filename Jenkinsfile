@@ -71,7 +71,8 @@ pipeline {
                         ),
                         flake8(pattern: 'build/flake8.txt'),
                         pyLint(pattern: 'build/pylint.txt'),
-                        myPy(pattern: 'build/mypy.txt')
+                        myPy(pattern: 'build/mypy.txt'),
+                        pyLint(pattern: 'build/ruff.txt', id: 'ruff', name: 'Ruff')
                     ]
                 )
             }

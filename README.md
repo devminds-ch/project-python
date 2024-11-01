@@ -25,6 +25,7 @@ The Python package is based on the following toolchain:
 * [Flake8](https://flake8.pycqa.org/en/latest/) for style guide enforcement
 * [mypy](https://mypy-lang.org/) for static type checking
 * [Pylint](https://www.pylint.org/) for static code analysis
+* [Ruff](https://docs.astral.sh/ruff/) for linting and code formatting
 * [pytest](https://docs.pytest.org/en/stable/) for test creation and execution
 
 
