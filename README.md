@@ -20,7 +20,7 @@ Commands:
 
 The Python package is based on the following toolchain:
 
-* [uv](https://docs.astral.sh/uv/) for dependencies and virtual environment
+* [uv](https://docs.astral.sh/uv/) for dependencies, virtual environment, package build and deployment
 * [Sphinx](https://www.sphinx-doc.org/en/master/) for documentation
 * [Flake8](https://flake8.pycqa.org/en/latest/) for style guide enforcement
 * [mypy](https://mypy-lang.org/) for static type checking
