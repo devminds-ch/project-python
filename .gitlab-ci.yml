@@ -34,11 +34,9 @@ code_quality:
 test-python-package:
   stage: test
   before_script:
-    - pipenv install --system --dev
-    - pip install -e .
+    - pip install uv
   script:
-    - echo "Running unit tests"
-    - pytest
+    - tools/test-package.sh
   coverage: '/TOTAL.*\s+(\d+%)$/'
   artifacts:
     reports:
@@ -50,7 +48,6 @@ test-python-package:
 deploy-python-package:
   stage: deploy
   before_script:
-    - pip install build twine
+    - pip install uv
   script:
-    - echo "Deploying the package..."
-    - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/*
+    - tools/deploy-package.sh
