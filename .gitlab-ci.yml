@@ -13,27 +13,20 @@ include:
 build-python-package:
   stage: build
   before_script:
-    - pipenv install --system --dev
-    - pip install packaging
+    - pip install uv
   script:
-    - echo "Building the project..."
-    - python -m build --wheel
+    - tools/build-package.sh
   artifacts:
     paths:
-      - dist
+      - 'dist/*.whl'
     expire_in: 1 week
 
 build-documentation:
   stage: build
   before_script:
-    - pipenv install --system --dev
-    - pip install -e .
-    - pip install packaging
-    - pip install tomli
-    - pip install certifi
+    - pip install uv
   script:
-    - cd docs
-    - pipenv run make html
+    - tools/build-docs.sh
 
 code_quality:
   when: manual
