@@ -27,6 +27,9 @@ build-documentation:
     - pip install uv
   script:
     - tools/build-docs.sh
+  artifacts:
+    paths:
+      - build/html/
 
 code_quality:
   when: manual
@@ -56,3 +59,12 @@ deploy-python-package:
 
   script:
     - tools/deploy-package.sh
+
+pages:
+  stage: deploy
+  script:
+    - mv build/html/ public/
+  artifacts:
+    paths:
+      - public/
+    
