@@ -49,5 +49,10 @@ deploy-python-package:
   stage: deploy
   before_script:
     - pip install uv
+  variables:
+    UV_PUBLISH_URL: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi
+    UV_PUBLISH_USERNAME: gitlab-ci-token
+    UV_PUBLISH_PASSWORD: ${CI_JOB_TOKEN}
+
   script:
     - tools/deploy-package.sh
