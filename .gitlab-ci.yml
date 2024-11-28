@@ -42,6 +42,18 @@ test-python-package:
         coverage_format: cobertura
         path: coverage.xml
 
+lint-python-package:
+  stage: test
+  before_script:
+    # TODO: Add flake8-gl-codeclimate as dependency
+    - pip install flake8-gl-codeclimate
+    - pip install uv
+  script:
+    - uv run --all-extras flake8 src/python_training_project --format gl-codeclimate --output-file gl-code-quality-report.json
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json
+
 deploy-python-package:
   stage: deploy
   before_script:
