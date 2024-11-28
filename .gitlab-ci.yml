@@ -7,9 +7,6 @@ stages:
   - test
   - deploy
 
-include:
-  - template: Jobs/Code-Quality.gitlab-ci.yml
-
 build-python-package:
   stage: build
   before_script:
@@ -30,9 +27,6 @@ build-documentation:
   artifacts:
     paths:
       - build/html/
-
-code_quality:
-  when: manual
 
 test-python-package:
   stage: test
