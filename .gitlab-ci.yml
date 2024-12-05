@@ -54,6 +54,13 @@ lint-python-package:
     reports:
       codequality: gl-code-quality-report.json
 
+additional-mr-checks:
+  stage: test
+  script:
+    - echo "Additional checks for merge requests"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
 deploy-python-package:
   stage: deploy
   before_script:
