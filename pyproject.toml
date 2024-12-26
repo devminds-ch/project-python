@@ -1,0 +1,81 @@
+[build-system]
+requires = [
+    "setuptools",
+    "setuptools_scm[toml]",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_training_project"
+authors = [
+    {name = "Andreas", email = "andreas@devminds.ch"},
+    {name = "Thomas", email = "thomas@devminds.ch"},
+]
+description = "Python Training Project by devminds GmbH"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "click",
+    "flake8-gl-codeclimate>=0.2.1",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/devminds-ch/project-python"
+"Bug Tracker" = "https://github.com/devminds-ch/project-python/issues"
+
+[project.scripts]
+python_training_project = "python_training_project.__main__:cli"
+
+[tool.uv]
+dev-dependencies = [
+    "coverage",
+    "flake8",
+    "mypy",
+    "myst-parser",
+    "pylint",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "ruff",
+    "sphinx",
+    "sphinx-rtd-theme",
+]
+
+[tool.setuptools_scm]
+write_to = "src/python_training_project/version.py"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov --cov-report term --cov-report xml --junitxml=build/test-report.xml"
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.run]
+branch = true
+omit = [
+    "*/__init__.py",
+    "*/__main__.py",
+    "*/version.py",
+    "tests/*"
+]
+
+[tool.coverage.xml]
+output = "build/test-coverage.xml"
+
+source_pkgs = ["python_training_project"]
+
+[tool.ruff]
+include = [
+    "pyproject.toml",
+    "src/**/*.py",
+    "tests/**/*.py"
+]
+output-format = "pylint"
