@@ -1,0 +1,12 @@
+__pycache__
+.coverage
+.mypy_cache
+.pytest_cache
+.venv
+*.egg-info
+_build
+build
+dist
+coverage.xml
+report.xml
+version.py
