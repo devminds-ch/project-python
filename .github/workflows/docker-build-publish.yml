@@ -5,15 +5,15 @@ on:
     branches:
       - main
     paths:
-      - Pipfile
-      - Pipfile.lock
+      - pyproject.toml
+      - uv.lock
       - .devcontainer/Dockerfile
   pull_request:
     branches:
       - main
     paths:
-      - Pipfile
-      - Pipfile.lock
+      - pyproject.toml
+      - uv.lock
       - .devcontainer/Dockerfile
   workflow_dispatch:
 
