@@ -33,8 +33,8 @@ dynamic = ["version"]
 [project.scripts]
 python_training_project = "python_training_project.__main__:cli"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "coverage",
     "flake8",
     "mypy",
