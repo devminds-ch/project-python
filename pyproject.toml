@@ -9,8 +9,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "python_training_project"
 authors = [
-    {name = "Andreas", email = "andreas@devminds.ch"},
-    {name = "Thomas", email = "thomas@devminds.ch"},
+    {name = "Andreas Nussberger", email = "andreas@devminds.ch"},
+    {name = "Thomas Keller", email = "thomas@devminds.ch"},
 ]
 description = "Python Training Project by devminds GmbH"
 readme = "README.md"
