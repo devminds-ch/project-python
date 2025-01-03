@@ -7,7 +7,7 @@ import sys
 
 import click
 
-from python_training_project.calculate import sum
+from python_training_project.calculate import calc_sum
 
 log = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ def cli():
 @click.argument("b", type=float)
 def cli_sum(a: float, b: float):
     """Show the sum of two numbers on the console."""
-    log.info("Sum of %f and %f is %f", a, b, sum(a, b))
+    log.info("Sum of %f and %f is %f", a, b, calc_sum(a, b))
 
 
 if __name__ == "__main__":
