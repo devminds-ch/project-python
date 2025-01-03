@@ -82,3 +82,8 @@ include = [
     "tests/**/*.py"
 ]
 output-format = "pylint"
+
+[tool.pylint.main]
+ignore = [
+    "version.py"
+]
