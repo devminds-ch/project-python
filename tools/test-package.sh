@@ -8,6 +8,6 @@ pushd "${REPO_ROOT}" 2>&1 > /dev/null
 mkdir -p build
 
 echo "Running tests..."
-pytest
+uv run --all-groups pytest
 
 popd 2>&1 > /dev/null
