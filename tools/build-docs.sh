@@ -8,6 +8,6 @@ pushd "${REPO_ROOT}" 2>&1 > /dev/null
 echo "Building documentation..."
 mkdir -p build
 cd docs
-make html
+uv run --all-groups make html
 
 popd 2>&1 > /dev/null
