@@ -48,6 +48,10 @@ dev = [
     "sphinx-rtd-theme",
 ]
 
+[tool.uv]
+cache-dir = "./.uv_cache"
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
+
 [tool.setuptools_scm]
 write_to = "src/python_training_project/version.py"
 

@@ -1,7 +1,6 @@
 __pycache__
 .coverage
-.mypy_cache
-.pytest_cache
+.*_cache
 .venv
 *.egg-info
 _build
