@@ -11,3 +11,8 @@ def test_sum_negative():
     assert calc_sum(1, -1) == 0
     assert calc_sum(-1, 1) == 0
     assert calc_sum(-1, -1) == -2
+
+def test_sum_fail():
+    assert calc_sum(1, 1) != 3
+    assert calc_sum(2, 1) != 4
+    assert calc_sum(1, 2) != 4
