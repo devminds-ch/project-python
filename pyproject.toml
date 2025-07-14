@@ -77,8 +77,6 @@ omit = [
 [tool.coverage.xml]
 output = "build/test-coverage.xml"
 
-source_pkgs = ["python_training_project"]
-
 [tool.ruff]
 include = [
     "pyproject.toml",
