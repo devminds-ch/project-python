@@ -24,7 +24,7 @@ jobs:
       options: --user 1001
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Build documentation
         run: ./tools/build-docs.sh
       - name: Upload documentation
@@ -41,7 +41,7 @@ jobs:
       options: --user 1001
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Build Python package
         run: ./tools/build-package.sh
       - name: Upload Python package
@@ -58,7 +58,7 @@ jobs:
       options: --user 1001
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Run linters
         run: tools/lint-package.sh
         continue-on-error: true
@@ -76,7 +76,7 @@ jobs:
       options: --user 1001
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Run tests
         run: ./tools/test-package.sh
       - name: Upload test results
