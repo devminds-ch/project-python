@@ -1,6 +1,6 @@
 # https://github.com/devcontainers/images/tree/main/src/python
 #FROM mcr.microsoft.com/devcontainers/python:1-3.13-bookworm
-FROM python:3.13-slim-bookworm
+FROM python:3.14-slim-bookworm
 
 # https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user
 ARG USERNAME=vscode
