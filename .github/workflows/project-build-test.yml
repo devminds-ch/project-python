@@ -28,7 +28,7 @@ jobs:
       - name: Build documentation
         run: ./tools/build-docs.sh
       - name: Upload documentation
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: documentation
           path: "build/html"
@@ -45,7 +45,7 @@ jobs:
       - name: Build Python package
         run: ./tools/build-package.sh
       - name: Upload Python package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: python-package
           path: "dist/*.whl"
@@ -63,7 +63,7 @@ jobs:
         run: tools/lint-package.sh
         continue-on-error: true
       - name: Upload lint results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: lint-results
           path: "build/*.txt"
@@ -80,7 +80,7 @@ jobs:
       - name: Run tests
         run: ./tools/test-package.sh
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: test-results
           path: "build/*.xml"
