@@ -7,18 +7,18 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# IMPORTANT:  make sure to use the 'runner user'when running jobs in a container!
-#             Otherwise there will be 'dubious ownership' issues reported by Git.
-#             Therefore, make sure to use the '--user 1001' option for the container.
 jobs:
   build-doc:
     runs-on: ubuntu-latest
     container:
       image: "ghcr.io/astral-sh/uv:python3.14-trixie"
-      options: --user 1001
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
+      # Required to avoid 'dubious ownership' errors when running Git commands within the container
+      - name: Add GitHub workspace as Git safe directory within container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Build documentation
         run: ./tools/build-docs.sh
@@ -34,10 +34,13 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: "ghcr.io/astral-sh/uv:python3.14-trixie"
-      options: --user 1001
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
+      # Required to avoid 'dubious ownership' errors when running Git commands within the container
+      - name: Add GitHub workspace as Git safe directory within container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Build Python package
         run: ./tools/build-package.sh
@@ -53,10 +56,13 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: "ghcr.io/astral-sh/uv:python3.14-trixie"
-      options: --user 1001
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
+      # Required to avoid 'dubious ownership' errors when running Git commands within the container
+      - name: Add GitHub workspace as Git safe directory within container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Run linters
         run: tools/lint-package.sh
