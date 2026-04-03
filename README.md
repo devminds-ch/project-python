@@ -1,10 +1,10 @@
 # Python Training Project by [devminds GmbH](https://devminds.ch)
 
-This Python project is used for DevOps CI/CD trainings.
+This Python project is used for trainings offered by devminds GmbH.
 
 The project contains a Python package providing a CLI to calculate the sum of two numbers:
 
-```bash
+```
 Usage: python_training_project [OPTIONS] COMMAND [ARGS]...
 
 Options:
