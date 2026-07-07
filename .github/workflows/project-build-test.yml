@@ -14,7 +14,7 @@ jobs:
       image: "ghcr.io/astral-sh/uv:python3.13-trixie"
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Required to avoid 'dubious ownership' errors when running Git commands within the container
       - name: Add GitHub workspace as Git safe directory within container
@@ -24,7 +24,7 @@ jobs:
         run: ./tools/build-docs.sh
 
       - name: Upload documentation
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: documentation
           path: "build/html"
@@ -36,7 +36,7 @@ jobs:
       image: "ghcr.io/astral-sh/uv:python3.13-trixie"
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Required to avoid 'dubious ownership' errors when running Git commands within the container
       - name: Add GitHub workspace as Git safe directory within container
@@ -46,7 +46,7 @@ jobs:
         run: ./tools/build-package.sh
 
       - name: Upload Python package
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: python-package
           path: "dist/*.whl"
@@ -58,7 +58,7 @@ jobs:
       image: "ghcr.io/astral-sh/uv:python3.13-trixie"
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Required to avoid 'dubious ownership' errors when running Git commands within the container
       - name: Add GitHub workspace as Git safe directory within container
@@ -69,7 +69,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload lint results
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: lint-results
           path: "build/*.txt"
@@ -79,7 +79,7 @@ jobs:
         run: ./tools/test-package.sh
 
       - name: Upload test results
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: test-results
           path: "build/*.xml"
