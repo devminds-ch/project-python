@@ -11,7 +11,7 @@ jobs:
   build-doc:
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/astral-sh/uv:python3.13-trixie@sha256:09461889076e3d3a6e0b62d45f8680a24c4c49fecd065771471c91912eaa6090"
+      image: "ghcr.io/astral-sh/uv:python3.13-trixie@sha256:fcd93698a75c0fb5cd180788cab96e5b96c30461a03caf53c1d3fa5495fdd421"
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -33,7 +33,7 @@ jobs:
   build-app:
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/astral-sh/uv:python3.13-trixie@sha256:09461889076e3d3a6e0b62d45f8680a24c4c49fecd065771471c91912eaa6090"
+      image: "ghcr.io/astral-sh/uv:python3.13-trixie@sha256:fcd93698a75c0fb5cd180788cab96e5b96c30461a03caf53c1d3fa5495fdd421"
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -55,7 +55,7 @@ jobs:
   test-app:
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/astral-sh/uv:python3.13-trixie@sha256:09461889076e3d3a6e0b62d45f8680a24c4c49fecd065771471c91912eaa6090"
+      image: "ghcr.io/astral-sh/uv:python3.13-trixie@sha256:fcd93698a75c0fb5cd180788cab96e5b96c30461a03caf53c1d3fa5495fdd421"
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
